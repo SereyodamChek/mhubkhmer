@@ -1,0 +1,1363 @@
+/*
+  Premium & Modern CSS Refactor
+  - Keeps your existing class names so you don’t have to rewrite HTML
+  - Introduces design tokens, fluid type/spacing, softer shadows
+  - Better accessibility (contrast, focus styles), dark mode support
+  - Khmer + Latin typography pairing
+*/
+
+/* ------------------------------------------------------
+   1) Font Imports
+------------------------------------------------------ */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@100..900&display=swap");
+
+/* ------------------------------------------------------
+   2) Design Tokens
+------------------------------------------------------ */
+:root {
+  /* Brand */
+  --brand: #ac8807;
+  /* your original accent */
+  --brand-600: #946f00;
+  --brand-700: #7b5c00;
+
+  /* Neutral palette */
+  --bg: #0b0c0f;
+  /* deep neutral background */
+  --surface: #111318;
+  /* cards/nav surfaces */
+  --surface-2: #171a20;
+  /* raised surfaces */
+  --text: #e7e9ee;
+  /* primary text */
+  --muted: #a7afbd;
+  /* secondary text */
+  --line: #2a2f39;
+  /* subtle borders */
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, .25);
+  --shadow: 0 8px 24px rgba(0, 0, 0, .35);
+  --shadow-lg: 0 18px 40px rgba(0, 0, 0, .45);
+
+  /* Radii */
+  --r-sm: 8px;
+  --r: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* Spacing (fluid) */
+  --space-1: clamp(.4rem, .35vw, .6rem);
+  --space-2: clamp(.8rem, .7vw, 1rem);
+  --space-3: clamp(1.2rem, 1.2vw, 1.4rem);
+  --space-4: clamp(1.6rem, 1.6vw, 2rem);
+  --space-5: clamp(2.4rem, 2.2vw, 3.2rem);
+  --space-6: clamp(3.2rem, 3vw, 4rem);
+
+  /* Typography scale */
+  --fz-xs: clamp(1.2rem, .8vw, 1.3rem);
+  --fz-sm: clamp(1.4rem, .9vw, 1.5rem);
+  --fz-md: clamp(1.6rem, 1vw, 1.8rem);
+  --fz-lg: clamp(2rem, 1.4vw, 2.4rem);
+  --fz-xl: clamp(2.8rem, 2.6vw, 3.6rem);
+  --fz-2xl: clamp(3.4rem, 3.6vw, 4.8rem);
+
+  /* Component tokens */
+  --container: 1200px;
+  --ring: 0 0 0 3px rgba(172, 136, 7, .35);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+:root {
+  --marquee-h: clamp(220px, 30vw, 300px);
+  --marquee-item-w: clamp(320px, 32vw, 440px);
+  --marquee-speed: 22s;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f7f7f9;
+    --surface: #ffffff;
+    --surface-2: #f3f4f7;
+    --text: #111318;
+    --muted: #495060;
+    --line: #e7e9ee;
+    --shadow-sm: 0 1px 2px rgba(16, 24, 40, .08);
+    --shadow: 0 8px 24px rgba(16, 24, 40, .12);
+    --shadow-lg: 0 18px 40px rgba(16, 24, 40, .18);
+  }
+}
+
+/* ------------------------------------------------------
+   3) Baseline / Reset
+------------------------------------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 10% -20%, rgba(172, 136, 7, .08), transparent 50%),
+    radial-gradient(900px 600px at 110% -10%, rgba(172, 136, 7, .06), transparent 35%),
+    var(--bg);
+  font: 400 var(--fz-md) "Poppins", "dangrek", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+  border-radius: var(--r-sm);
+}
+
+/* Links */
+a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--brand-600);
+}
+
+/* Type */
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
+  letter-spacing: .2px;
+  margin: 0 0 var(--space-3);
+}
+
+h1 {
+  font-size: var(--fz-2xl);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--fz-xl);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--fz-lg);
+  font-weight: 600;
+}
+
+p,
+li,
+span,
+label {
+  font-size: var(--fz-md);
+}
+
+.small {
+  font-size: var(--fz-sm);
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Utilities */
+.container_width,
+.container {
+  max-width: var(--container);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.p_top5 {
+  padding-top: var(--space-6);
+}
+
+.p_top10 {
+  padding-top: calc(var(--space-6) * 1.6);
+}
+
+.grid_1x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.grid_1x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.grid_1x4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 1024px) {
+
+  .grid_1x3,
+  .grid_1x4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+
+  .grid_1x2,
+  .grid_1x3,
+  .grid_1x4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ------------------------------------------------------
+   4) App Header / Navbar
+------------------------------------------------------ */
+.warpper_header {
+  position: sticky;
+  top: 0;
+  inset-inline: 0;
+  background: color-mix(in oklab, var(--surface) 85%, transparent);
+  backdrop-filter: saturate(1.1) blur(8px);
+  border-bottom: 1px solid var(--line);
+  z-index: 100;
+}
+
+.warpper_navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+}
+
+.warpper_logo_icon {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 700;
+}
+
+.logo_website {
+  width: 52px;
+  aspect-ratio: 1;
+}
+
+.navlist {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.navlist>li>a {
+  position: relative;
+  text-transform: capitalize;
+  font-weight: 600;
+  padding: .6rem .2rem;
+}
+
+.navlist>li>a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--brand);
+  transition: width .25s var(--ease);
+  border-radius: 2px;
+}
+
+.navlist>li>a:hover::after,
+.navlist>li>a.active::after {
+  width: 100%;
+}
+
+.warpper_cart_user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.warpper_cart_user i {
+  font-size: 2.2rem;
+  cursor: pointer;
+  transition: transform .2s var(--ease);
+}
+
+.warpper_cart_user i:hover {
+  transform: translateY(-2px);
+}
+
+.add_cart {
+  position: relative;
+}
+
+.add_cart span {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 .6rem;
+  display: grid;
+  place-items: center;
+  font-size: var(--fz-xs);
+  font-weight: 700;
+  color: #111;
+  background: var(--brand);
+  border-radius: var(--r-pill);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Mobile nav */
+.icon_toggler {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .icon_toggler {
+    display: flex;
+    align-items: center;
+  }
+
+  .navlist {
+    position: fixed;
+    inset: 64px 0 auto 0;
+    height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    gap: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    transition: height .35s var(--ease);
+  }
+
+  .navlist.active {
+    height: calc(56px * 6);
+  }
+
+  .navlist>li {
+    width: 100%;
+  }
+
+  .navlist>li>a {
+    display: block;
+    padding: 1.6rem var(--space-3);
+  }
+}
+
+/* =============================
+   Premium Modern Button Styles
+============================= */
+/* ============================
+   Premium Curved Buttons (Pill)
+   Works for: .button, .btn_sign_up, .btn_cart, .btn_popular
+   - White base, amber text (your brand)
+   - Extra-curved pill radius
+   - Subtle gloss + border + depth
+============================ */
+
+.button,
+.btn_sign_up,
+.btn_cart,
+.btn_popular {
+  /* Curvy + palette */
+  --btn-radius: 9999px;
+  /* super pill */
+  --btn-bg: #fff;
+  /* white base */
+  --btn-fg: var(--brand);
+  /* amber text */
+  --btn-bd: color-mix(in oklab, var(--brand) 65%, #fff 35%);
+  --btn-shadow: 0 6px 18px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .4);
+  --btn-shadow-hover: 0 10px 28px rgba(0, 0, 0, .28);
+  --btn-padding-y: 1.2rem;
+  --btn-padding-x: 2.2rem;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .8rem;
+
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border-radius: var(--btn-radius);
+  background: linear-gradient(180deg, #fff, #fafafa);
+  color: var(--btn-fg);
+  border: 1px solid var(--btn-bd);
+  font-weight: 800;
+  letter-spacing: .2px;
+
+  box-shadow: var(--btn-shadow);
+  transform: translateZ(0);
+  /* better GPU */
+  transition:
+    transform .18s var(--ease),
+    box-shadow .25s var(--ease),
+    background .25s var(--ease),
+    color .25s var(--ease),
+    border-color .25s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Icon inherits text color */
+.button i,
+.btn_sign_up i,
+.btn_cart i,
+.btn_popular i {
+  color: currentColor;
+}
+
+/* Premium gloss sweep */
+.button::before,
+.btn_sign_up::before,
+.btn_cart::before,
+.btn_popular::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0) 55%),
+    linear-gradient(120deg, rgba(255, 255, 255, .35), transparent 60%);
+  mix-blend-mode: screen;
+  transform: translateX(-120%);
+  transition: transform .5s var(--ease);
+  pointer-events: none;
+}
+
+/* Hover: gentle lift + invert to brand fill */
+.button:hover,
+.btn_sign_up:hover,
+.btn_cart:hover,
+.btn_popular:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--btn-shadow-hover);
+  background: linear-gradient(180deg, var(--brand), color-mix(in oklab, var(--brand) 86%, #000 14%));
+  color: #111;
+  border-color: transparent;
+}
+
+.button:hover::before,
+.btn_sign_up:hover::before,
+.btn_cart:hover::before,
+.btn_popular:hover::before {
+  transform: translateX(120%);
+}
+
+/* Focus: premium ring */
+.button:focus-visible,
+.btn_sign_up:focus-visible,
+.btn_cart:focus-visible,
+.btn_popular:focus-visible {
+  outline: none;
+  box-shadow: var(--ring), var(--btn-shadow-hover);
+}
+
+/* Active: tactile press */
+.button:active,
+.btn_sign_up:active,
+.btn_cart:active,
+.btn_popular:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Disabled state */
+.button[disabled],
+.btn_sign_up[disabled],
+.btn_cart[disabled],
+.btn_popular[disabled] {
+  opacity: .6;
+  pointer-events: none;
+}
+
+/* -----------------------------
+   Variants (still curved/premium)
+------------------------------ */
+
+/* Ghost: outline pill that fills on hover */
+.button--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--brand);
+  --btn-bd: var(--brand);
+  background: transparent;
+  color: var(--btn-fg);
+  border-color: var(--btn-bd);
+  box-shadow: none;
+}
+
+.button--ghost:hover,
+.button--ghost:focus-visible {
+  background: var(--brand);
+  color: #111;
+  border-color: transparent;
+  box-shadow: var(--btn-shadow-hover);
+}
+
+/* Dark: high-contrast pill */
+.button--dark {
+  --btn-bg: #0f1115;
+  --btn-fg: #fff;
+  background: linear-gradient(180deg, #161921, #0f1115);
+  color: var(--btn-fg);
+  border-color: color-mix(in oklab, #fff 14%, #000 86%);
+}
+
+.button--dark:hover {
+  background: linear-gradient(180deg, #0f1115, #0b0d12);
+}
+
+/* -----------------------------
+   Size helpers (optional)
+------------------------------ */
+.button--sm {
+  --btn-padding-y: .8rem;
+  --btn-padding-x: 1.4rem;
+  font-weight: 700;
+}
+
+.button--lg {
+  --btn-padding-y: 1.4rem;
+  --btn-padding-x: 2.6rem;
+  font-size: clamp(1.6rem, 1vw, 1.8rem);
+}
+
+.button--block {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------
+   6) Forms
+------------------------------------------------------ */
+.content_form form fieldset {
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  padding: .6rem .8rem;
+  border-radius: var(--r);
+  background: var(--surface);
+}
+
+.content_form form>fieldset>legend {
+  font-size: var(--fz-xs);
+  color: var(--muted);
+  padding: 0 .6rem;
+}
+
+.content_form form>fieldset>input {
+  width: 100%;
+  padding: 1rem .6rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--text);
+}
+
+.btn_sign_up {
+  --btn-fg: #111;
+  --btn-bg: var(--brand);
+  width: 100%;
+}
+
+/* Modal/overlay for .warpper_form */
+.warpper_form {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in oklab, #000 60%, transparent);
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--ease);
+}
+
+.warpper_form.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.content_form {
+  max-width: 920px;
+  width: 92%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-5);
+}
+
+/* ------------------------------------------------------
+   7) Hero
+------------------------------------------------------ */
+.hero_card {
+  text-align: center;
+  padding-top: var(--space-6);
+}
+
+.hero_card>p {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.hero_img {
+  max-width: 520px;
+  height: clamp(320px, 48vw, 520px);
+  margin-inline: auto;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--surface-2);
+  box-shadow: var(--shadow);
+}
+
+.hero_img>img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: float 4s var(--ease) infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(6px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.hero_image_slider {
+  text-align: center;
+}
+
+.hero_image_slider img {
+  height: 9rem;
+  margin: 1rem .5rem 0;
+  border-radius: var(--r-sm);
+  transition: transform .25s var(--ease);
+  cursor: pointer;
+}
+
+.hero_image_slider img:hover {
+  transform: translateY(-6px);
+}
+
+/* ------------------------------------------------------
+   8) Cards / Marquee / Sections
+------------------------------------------------------ */
+.product_popular,
+.warpper_recommand,
+.warpper_content_customer {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: var(--space-3);
+}
+
+.card_product {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  padding: var(--space-3);
+  text-align: center;
+  overflow: hidden;
+}
+
+.product_popular_img,
+.card_produc_img {
+  height: clamp(180px, 26vw, 240px);
+  border-radius: var(--r);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.product_popular_img img,
+.card_produc_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .35s var(--ease);
+}
+
+.product_popular_img:hover img,
+.card_produc_img:hover img {
+  transform: scale(1.06);
+}
+
+.product_name {
+  font-weight: 700;
+  margin-top: var(--space-2);
+  font-family: "dangrek", Poppins, sans-serif;
+}
+
+.product_price {
+  letter-spacing: .2rem;
+  color: var(--muted);
+}
+
+/* Marquee */
+.warpper_card_marquee {
+  position: relative;
+  width: 100%;
+  max-width: var(--container);
+  height: 300px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.item {
+  position: absolute;
+  left: max(calc(220px * 6), 100%);
+  width: 220px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-2);
+  border-radius: var(--r);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  animation: scrollleft 14s linear infinite;
+}
+
+@keyframes scrollleft {
+  to {
+    left: -220px;
+  }
+}
+
+.item1 {
+  animation-delay: calc(14s / 6 * (6 - 1) * -1);
+}
+
+.item2 {
+  animation-delay: calc(14s / 6 * (6 - 2) * -1);
+}
+
+.item3 {
+  animation-delay: calc(14s / 6 * (6 - 3) * -1);
+}
+
+.item4 {
+  animation-delay: calc(14s / 6 * (6 - 4) * -1);
+}
+
+.item5 {
+  animation-delay: calc(14s / 6 * (6 - 5) * -1);
+}
+
+.item6 {
+  animation-delay: calc(14s / 6 * (6 - 6) * -1);
+}
+
+/* ------------------------------------------------------
+   9) Menu / Search / Filters
+------------------------------------------------------ */
+.warpper_header_menu {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-2);
+  font-weight: 600;
+}
+
+.list_menu>ul {
+  display: flex;
+  gap: .8rem;
+  flex-wrap: wrap;
+}
+
+.list_menu ul li a {
+  display: inline-flex;
+  align-items: center;
+  padding: .6rem 1.2rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+
+.list_menu>ul>li>a:hover,
+.btn_menu_filter.active {
+  background: var(--brand);
+  color: #111;
+  border-color: transparent;
+}
+
+.warpper_search {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .4rem;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.warpper_search>input {
+  flex: 1;
+  padding: .8rem 1.2rem;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--fz-md);
+  font-family: "Noto Sans Khmer", Poppins, sans-serif;
+}
+
+/* ------------------------------------------------------
+   10) Cart Drawer
+------------------------------------------------------ */
+.card_tap {
+  position: fixed;
+  top: 64px;
+  right: 0;
+  width: min(420px, 92vw);
+  height: calc(100dvh - 64px);
+  background: var(--surface);
+  color: var(--text);
+  border-left: 1px solid var(--line);
+  display: grid;
+  grid-template-rows: 64px 1fr auto;
+  gap: 0;
+  padding: 0;
+  transform: translateX(100%);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  box-shadow: var(--shadow-lg);
+  z-index: 120;
+}
+
+.main_container.show_cart .card_tap {
+  transform: translateX(0);
+}
+
+.card_tap h2 {
+  margin: 0;
+  padding: 0 var(--space-3);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--fz-lg);
+}
+
+.list_cart {
+  overflow-y: auto;
+  padding: var(--space-2) var(--space-3);
+}
+
+.item_cart {
+  display: grid;
+  grid-template-columns: 72px 1fr 72px auto;
+  gap: var(--space-2);
+  align-items: center;
+  padding: .8rem;
+  border-radius: var(--r-sm);
+}
+
+.item_cart:nth-child(even) {
+  background: var(--surface-2);
+}
+
+.img_cart img {
+  border-radius: var(--r-sm);
+}
+
+.name_cart {
+  font-size: var(--fz-sm);
+  font-family: "Noto Sans Khmer", Poppins, sans-serif;
+  font-weight: 600;
+}
+
+.total_price {
+  font-size: var(--fz-sm);
+}
+
+.quantity {
+  display: inline-flex;
+  gap: .4rem;
+  align-items: center;
+}
+
+.quantity span {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  cursor: pointer;
+}
+
+.minuss:hover,
+.pluss:hover {
+  background: var(--brand);
+  color: #111;
+  border-color: transparent;
+}
+
+.total_product {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding: var(--space-3);
+}
+
+.warraper_button {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.warraper_button button {
+  padding: 1.6rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+}
+
+.close {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.check_out {
+  background: var(--brand);
+  color: #111;
+}
+
+/* ------------------------------------------------------
+   11) About / Reviews / Sections
+------------------------------------------------------ */
+.about_header_text {
+  color: #fff;
+  text-align: center;
+  padding: 14rem 0;
+  position: relative;
+  background: linear-gradient(rgba(0, 0, 0, .46), rgba(0, 0, 0, .46)), center/cover no-repeat url("images/menu_banner4.jpg");
+  clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 5rem), 0% 100%);
+}
+
+.content_icon,
+.warpper_about_content_review {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: var(--space-3);
+  box-shadow: var(--shadow);
+}
+
+.about_detail_review h2 {
+  font-size: var(--fz-2xl);
+  line-height: 1.1;
+}
+
+.about_img_review .warpper_about_content_review:first-child,
+.about_img_review .warpper_about_content_review:last-child {
+  margin-left: 0;
+}
+
+.about_card_img_review {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.about_name_review p:first-child {
+  font-weight: 700;
+}
+
+.about_name_review p:last-child {
+  font-size: var(--fz-sm);
+  color: var(--muted);
+}
+
+/* ------------------------------------------------------
+   12) Services
+------------------------------------------------------ */
+.service {
+  padding: var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+}
+
+.warpper_recommand_service,
+.warpper_recommand_service_bg {
+  padding: var(--space-3);
+  border-radius: var(--r);
+}
+
+.warpper_recommand_service {
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.warpper_recommand_service_bg {
+  background: #111;
+  border: 1px solid #222;
+  color: #fff;
+}
+
+.warpper_recommand_service .button_new,
+.warpper_recommand_service_bg .button_new {
+  padding: .9rem 1.8rem;
+  border-radius: var(--r-pill);
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.warpper_recommand_service .button_new {
+  background: var(--brand);
+  color: #111;
+}
+
+.warpper_recommand_service_bg .button_new {
+  background: #fff;
+  color: #111;
+}
+
+/* ------------------------------------------------------
+   13) Footer
+------------------------------------------------------ */
+footer {
+  background: var(--surface-2);
+  margin-top: var(--space-5);
+  border-top: 1px solid var(--line);
+}
+
+.warpper_footer_card {
+  max-width: calc(var(--container) + 80px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-3);
+  font-weight: 600;
+}
+
+.footer_card h2 {
+  padding: 0 0 var(--space-2);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.icon_footer {
+  display: flex;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+}
+
+.icon_footer span {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--brand);
+  box-shadow: var(--shadow-sm);
+}
+
+.icon_footer span i {
+  color: #111;
+}
+
+.end_footer {
+  background: #0d0f14;
+  color: #9aa3b2;
+  text-align: center;
+  padding: var(--space-3);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------
+   14) Responsive Tweaks
+------------------------------------------------------ */
+@media (max-width: 768px) {
+  .warpper_logo_icon {
+    display: none;
+  }
+
+  .menu_detail>h1 {
+    text-align: center;
+    letter-spacing: .6px;
+  }
+
+  .wrapper_menu_icon {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    padding-top: var(--space-4);
+  }
+
+  .warpper_header_menu {
+    flex-wrap: wrap;
+  }
+
+  .warpper_search {
+    width: 100%;
+  }
+
+  .warpper_contact_recommand,
+  .warpper_contact_recommand_new {
+    gap: var(--space-2);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero_card>h1 {
+    margin-bottom: var(--space-3);
+  }
+
+  .warpper_footer_card {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+/* ------------------------------------------------------
+   15) Legacy Class Alignments (kept for compatibility)
+   - These keep your original class names working with the new system.
+------------------------------------------------------ */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.label,
+label {
+  font-weight: 600;
+}
+
+.title_product {
+  font-weight: 700;
+  padding: .4rem 0;
+}
+
+.image_show {
+  text-align: center;
+}
+
+.image_show h2 {
+  padding-bottom: var(--space-2);
+}
+
+.layout_container {
+  width: min(var(--container), 100%);
+  margin-inline: auto;
+  columns: 3 200px;
+  column-gap: .6rem;
+}
+
+.layout_container>img {
+  width: 100%;
+  border-radius: var(--r-sm);
+}
+
+/* Optional: smooth section divider style */
+.section {
+  padding-block: var(--space-6);
+}
+
+.section--muted {
+  background: var(--surface-2);
+  border-block: 1px solid var(--line);
+}
+
+/* ============================
+   Premium Payment Methods
+============================ */
+
+.payment_methods {
+  margin: var(--space-3) var(--space-3);
+  padding: var(--space-3);
+  background: var(--surface);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--line);
+}
+
+.payment_methods h3 {
+  font-size: var(--fz-lg);
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.payment_option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface-2);
+  padding: var(--space-2);
+  margin-bottom: var(--space-2);
+  border-radius: var(--r);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--line);
+  transition: transform 0.2s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.payment_option:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.payment_logo {
+  height: 44px;
+  object-fit: contain;
+}
+
+.pay_with_aba,
+.pay_with_khqr {
+  --btn-bg: #fff;
+  --btn-fg: var(--brand);
+  --btn-bd: var(--brand);
+  padding: 0.8rem 1.6rem;
+  border-radius: var(--r-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 700;
+  border: 1px solid var(--btn-bd);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--ease);
+}
+
+.pay_with_aba:hover,
+.pay_with_khqr:hover {
+  background: var(--brand);
+  color: #111;
+  box-shadow: var(--shadow-lg);
+}
+
+/* QR Modal Styling */
+.qr_modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease);
+}
+
+.qr_modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.qr_modal_content {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  width: 90%;
+}
+
+.qr_modal_content h3 {
+  margin-bottom: var(--space-3);
+  color: var(--brand);
+}
+
+.qr_code {
+  width: 200px;
+  height: 200px;
+  margin-bottom: var(--space-3);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+}
+
+.close_qr {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-size: 2.4rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: color 0.3s ease;
+}
+
+.close_qr:hover {
+  color: var(--brand);
+}
+
+/* Premium popup style */
+.premium-popup {
+  border-radius: 18px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Modern button style */
+.premium-btn {
+  padding: 10px 22px !important;
+  font-size: 16px !important;
+  font-weight: bold !important;
+  border-radius: 8px !important;
+  background: linear-gradient(135deg, #007bff, #0056d2) !important;
+  transition: all 0.3s ease;
+}
+
+.premium-btn:hover {
+  background: linear-gradient(135deg, #0056d2, #003ca3) !important;
+}

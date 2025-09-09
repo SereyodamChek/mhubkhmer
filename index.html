@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="shortcut icon" type="x-icon" href="assets/images/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>មរតក</title>
+  <!-- link css file -->
+  <link rel="stylesheet" href="assets/style.css" />
+  <!-- Fontawesome cdn -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dangrek&display=swap" rel="stylesheet">
+  <!-- Jquery -->
+  <script src="assets/js/jquery-3-7-1.js"></script>
+  <!-- sweetalert -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"
+    integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+  <!-- navigation bar -->
+  <nav class="warpper_header">
+    <div class="container_width">
+      <div class="warpper_navbar">
+        <!-- logo -->
+        <div class="warpper_logo_icon">
+          <div class="logo_website">
+            <img src="assets/images/logo.png" alt="logo" />
+          </div>
+        </div>
+
+        <!-- icon togger -->
+        <div class="icon_toggler">
+          <i id="iconTogger" class="fa-solid fa-bars"></i>
+        </div>
+
+        <!-- navlist -->
+        <div class="warpper_navlist">
+          <ul class="navlist">
+            <li>
+              <a href="#" class="menu active" data-option="0">ទំព័រដើម</a>
+            </li>
+            <li><a href="#" class="menu" data-option="1">អំពីយើង</a></li>
+            <li><a href="#" class="menu" data-option="2">មុខម្ហូប</a></li>
+            <li><a href="#" class="menu" data-option="3">សេវាកម្ម</a></li>
+            <li><a href="#" class="menu" data-option="4">ទំនាក់ទំនង</a></li>
+            <li>
+              <a href="#" class="menu" data-option="5">ក្រុមរបស់យើង</a>
+            </li>
+            <li><a href="#" class="menu" data-option="6">ណែនាំ</a></li>
+          </ul>
+        </div>
+        <!-- add cart -->
+        <div class="warpper_cart_user">
+          <div class="add_cart">
+            <i id="iconCart" class="fa-solid fa-cart-shopping"></i>
+            <span>0</span>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- sign up -->
+  <div class="warpper_form">
+    <div class="content_form grid_1x2">
+      <div class="card_detail_signup">
+        <h2>បង្កើតគណនីឥឡូវនេះ</h2>
+        <span>
+          <i class="fa-solid fa-shield"></i>
+          <p>ការទូទាត់ប្រកបដោយសុវត្ថិភាព</p>
+        </span>
+        <span>
+          <i class="fa-solid fa-recycle"></i>
+          <p>ការផ្ទេរប្រាក់រហ័ស</p>
+        </span>
+        <span>
+          <i class="fa-solid fa-percent"></i>
+          <p>កម្រៃ</p>
+        </span>
+        <span>
+          <i class="fa-regular fa-hourglass-half"></i>
+          <p>អត្រាដែលអាចទទួលយកបានល្អបំផុត</p>
+        </span>
+        <span>
+          <i class="fa-solid fa-thumbs-up"></i>
+          <p>មានទំនុកចិត្ត</p>
+        </span>
+      </div>
+      <form action="">
+        <fieldset>
+          <legend>ឈ្មោះរបស់អ្នក</legend>
+          <input type="text" id="txt-name" placeholder="ឈ្មោះពេញរបស់អ្នក" />
+        </fieldset>
+        <fieldset>
+          <legend>អាស្រ័យដ្ឋាន</legend>
+          <input type="email" id="txt-email" placeholder="អាស្រ័យដ្ឋាន" />
+        </fieldset>
+        <fieldset>
+          <legend>លេខសម្ងាត់</legend>
+          <input type="password" id="txt-pass" placeholder="លេខសម្ងាត់" />
+          <i class="fa-regular fa-eye"></i>
+        </fieldset>
+        <fieldset>
+          <legend>ផ្ទៀងផ្ទាត់លេខសម្ងាត់</legend>
+          <input type="password" id="txt-cfpass" placeholder="ផ្ទៀងផ្ទាត់លេខសម្ងាត់" />
+          <i class="fa-regular fa-eye"></i>
+        </fieldset>
+        <input class="btn_sign_up" type="button" value="ចុះឈ្មោះ" />
+      </form>
+    </div>
+  </div>
+
+  <!-- warpper container -->
+  <!-- Header section -->
+  <div class="main_container">
+    <div class="container">
+      <div class="page">
+        <div class="">
+          <!-- hero section -->
+          <section class="hero_section p_top5">
+            <article class="hero_card">
+              <h1>សួស្តី សូមស្វាគមន៏មកកាន់ម្ហូបខ្មែរ</h1>
+              <p>
+                ស្វែងរកមុខម្ហូបខ្មែរដែលអ្នកពេញចិត្តនៅទីនោះ
+                ភោជនីយដ្ឋានរបស់ពួកយើងមានលក់មុខម្ហូបរបស់ខ្មែរគ្រប់ប្រភេទ
+                ហើយភ្ជាប់ជារស់ជាតិដើមតាំងពីសម័យបុរាណ និងមានរស់ជាតិឆ្ញាញ់។
+              </p>
+              <div class="hero_img">
+                <img src="assets/images/hero_img1.png" alt="hero image" class="main_hero_image" />
+              </div>
+              <div class="hero_image_slider">
+                <img src="assets/images/Amok_coconut.png" alt="" />
+                <img src="assets/images/Nhom_Bach_Jok_2.png" alt="" />
+                <img src="assets/images/hero_img.png" alt="" />
+              </div>
+            </article>
+          </section>
+          <!-- end hero section -->
+
+          <!-- tranditional section -->
+          <section class="tranditional_section p_top10">
+            <div class="grid_1x2">
+              <div class="traditional_detail">
+                <h2>មុខម្ហូបតំណាងអោយប្រទេសខ្មែរ</h2>
+                <p>
+                  មុខម្ហូបហហ្មុកជាមុខម្ហូបខ្មែរបុរាណមួយប្រភេទដែលបានធ្វើដោយត្រីស្រស់(ត្រីរ៉ស់
+                  ឬត្រីឆ្ដោរ) ហើយផ្សំគ្រឿងមានកាពិបុកនិងខ្ទីះដូងជាដើម
+                  ខ្ចប់ចំហុយជាមូយនឹងស្លឹកចេក ធ្វើរាងជាកន្ទោង។
+                </p>
+                <button class="button">
+                  <a>មើលច្រើនទៀត</a>
+                </button>
+              </div>
+              <div class="tranditional_img" data-aos="flip-right">
+                <img src="assets/images/hero_img.png" alt="" />
+              </div>
+            </div>
+          </section>
+          <!-- end tranditional section -->
+
+          <!-- popular product section -->
+          <section class="popular_section p_top10">
+            <h2>មុខម្ហូបដែលលក់ដាច់ប្រចាំហាង</h2>
+            <p>ខាងក្រោមនេះជាមុខម្ហូបដែលមាននាក់កម្មង់ច្រើនជាងគេ</p>
+            <div class="grid_1x3">
+              <article class="product_popular">
+                <a href="">
+                  <div class="product_popular_img">
+                    <img src="assets/images/Nhom_Bach_Jok_2.png" alt="" />
+                  </div>
+                  <p class="title_product">នំបញ្ចុក់សម្លប្រហើរ</p>
+                  <p class="detail_product">
+                    នំបញ្ចុក់សម្លប្រហើរជាមុខម្ហូបដែលពេញនិយមហើយមានរស់ជាតិឆ្ងុយឆ្ញាញ់
+                  </p>
+                  <button class="btn_popular">
+                    <a>ស្វែករកអីឡូវនេះ</a>
+                  </button>
+                </a>
+              </article>
+
+              <article class="product_popular">
+                <a href="">
+                  <div class="product_popular_img">
+                    <img src="assets/images/Amok_coconut.png" alt="" />
+                  </div>
+                  <p class="title_product">ហហ្មុកដូង</p>
+                  <p class="detail_product">
+                    អាម៉ុកដូងសម្លប្រហើរជាមុខម្ហូបដែលពេញនិយមហើយមានរស់ជាតិឆ្ងុយឆ្ញាញ់
+                  </p>
+                  <button class="btn_popular">
+                    <a>ស្វែករកអីឡូវនេះ</a>
+                  </button>
+                </a>
+              </article>
+
+              <article class="product_popular">
+                <a href="">
+                  <div class="product_popular_img">
+                    <img src="assets/images/Nhom_Bach_Jok.png" alt="" />
+                  </div>
+                  <p class="title_product">នំបញ្ចុក់សម្លគីរី</p>
+                  <p class="detail_product">
+                    អាម៉ុកដូងសម្លគីរីជាមុខម្ហូបដែលពេញនិយមហើយមានរស់ជាតិឆ្ងុយឆ្ញាញ់
+                  </p>
+                  <button class="btn_popular">
+                    <a>ស្វែករកអីឡូវនេះ</a>
+                  </button>
+                </a>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <!-- Image Show -->
+        <section class="image_show p_top10">
+          <h2>មុខម្ហូបផ្សេងៗទៀត</h2>
+          <div class="layout_container">
+            <img width="400px" src="assets/images/product_1.jpg" alt="" />
+            <img width="400px" src="assets/images/image5.jpg" alt="" />
+            <img width="400px" src="assets/images/image3.jpg" alt="" />
+            <img width="400px" src="assets/images/image2.jpg" alt="" />
+            <img width="400px" src="assets/images/image6.jpg" alt="" />
+            <img width="400px" src="assets/images/image7.jpg" alt="" />
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- cart tap -->
+    <div class="card_tap">
+      <h2>ទំនិញដែលបានកម្មង់</h2>
+
+      <!-- Cart Items -->
+      <div class="list_cart"></div>
+
+      <!-- Total Price -->
+      <div class="total_product">
+        <p>តម្លៃសរុប:</p>
+        <span class="total">$00.00</span>
+      </div>
+
+      <!-- Payment Options -->
+      <div class="payment_methods">
+        <h3>ជ្រើសរើសវិធីបង់ប្រាក់</h3>
+
+        <!-- ABA Bank Payment -->
+        <div class="payment_option aba">
+          <img src="assets/images/aba.png" alt="ABA Bank" class="payment_logo" />
+          <button class="pay_with_aba">បង់ប្រាក់តាម ABA</button>
+        </div>
+
+        <!-- KHQR Payment -->
+        <div class="payment_option khqr">
+          <img src="assets/images/khqr.png" alt="KHQR" class="payment_logo" />
+          <button class="pay_with_khqr">បង់ប្រាក់តាម KHQR</button>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="warraper_button">
+        <button class="close">បិទ</button>
+        <button class="check_out">គិតលុយ</button>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="warpper_footer_card">
+      <article class="footer_card">
+        <h2>អំពីយើង</h2>
+        <p class="footer_about_p">
+          ភោជនីដ្ឋានមរតក
+          របស់យើងបើកតាំងដើម្បីបំរើសកកម្មអ្នកអតិថជនអោយងាយស្រួលក្នុងការស្វែងរកម្ហូបអាហារ។
+        </p>
+        <div class="icon_footer">
+          <span><i class="fa-brands fa-facebook"></i></span>
+          <span><i class="fa-brands fa-twitter"></i></span>
+          <span><i class="fa-brands fa-square-instagram"></i></span>
+          <span><i class="fa-brands fa-youtube"></i></span>
+        </div>
+      </article>
+      <article class="footer_card">
+        <h2>ការគាំទ្រ</h2>
+        <p>FAQ</p>
+        <p>គោលការណ៏សម្ងាត</p>
+        <p>ជំនួយ</p>
+        <p>ទំនាក់ទំនង</p>
+      </article>
+      <article class="footer_card">
+        <h2>ហាង</h2>
+        <p>អាហារ</p>
+        <p>ភេសជៈ</p>
+        <p>បង្អែម</p>
+      </article>
+      <article class="footer_card">
+        <h2>ទំនាក់ទំនង</h2>
+        <div class="flex_footer_contact">
+          <i class="fa-solid fa-phone"></i>
+          <p>+855 12 345 678</p>
+        </div>
+        <div class="flex_footer_contact">
+          <i class="fa-solid fa-envelope"></i>
+          <p>អាស្រ័យដ្ឋាន</p>
+        </div>
+      </article>
+    </div>
+    <div class="end_footer">
+      <p>
+        កម្មសិទ្ធបញ្ញារបស់គេហ័រទំព័រភោជនីយដ្ឋានមរតកក្នុងឆ្នាំ២០២៤។ រក្សាសិទ្ធ
+        និងគ្រប់គ្រង​
+      </p>
+    </div>
+  </footer>
+</body>
+<script src="assets/js/script.js"></script>
+
+</html>

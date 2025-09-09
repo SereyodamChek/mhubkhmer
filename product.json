@@ -1,0 +1,229 @@
+[
+    
+    {
+        "id": 1,
+        "category": "food",
+        "name": "អាម៉ុកដូង",
+        "price": 3,
+        "img": "assets/images/Amok_coconut.png"
+    },
+    {
+        "id": 2,
+        "category": "food",
+        "name": "បុកមាន់",
+        "price": 4,
+        "img": "assets/images/Bok_Chicken.png"
+    },
+    {
+        "id": 3,
+        "category": "food",
+        "name": "ប្រហុកអាំងជ្រុញ",
+        "price": 5,
+        "img": "assets/images/BrorHok_Hoam_Jrunh.png"
+    },
+    {
+        "id": 30,
+        "category": "drink",
+        "name": "ទឺកដូង",
+        "price": 3,
+        "img": "assets/images/ទឹកដូង.png"
+    },
+    {
+        "id": 31,
+        "category": "drink",
+        "name": "មរតកកាហ្វេ",
+        "price": 3,
+        "img": "assets/images/drink-1.png"
+    },
+    {
+        "id": 16,
+        "category": "cake",
+        "name": "ជ័រគ",
+        "price": 3,
+        "img": "assets/images/បង្អែមជ័រគ.png"
+    },
+    {
+        "id": 17,
+        "category": "cake",
+        "name": "តៅស៊ុន",
+        "price": 3,
+        "img": "assets/images/បង្អែមតៅស៊ុន.png"
+    },
+    {
+        "id": 18,
+        "category": "cake",
+        "name": "ត្រសក់ស្រូវ",
+        "price": 3,
+        "img": "assets/images/បង្អែមត្រសក់ស្រូវ.png"
+    },
+    {
+        "id": 5,
+        "category": "food",
+        "name": "កកូរត្នោត",
+        "price": 3,
+        "img": "assets/images/Kako_Throat.png"
+    },
+    {
+        "id": 6,
+        "category": "food",
+        "name": "កកូរត្រី",
+        "price": 3,
+        "img": "assets/images/Kakor_Fish.png"
+    },
+    {
+        "id": 7,
+        "category": "food",
+        "name": "ខរជើងជ្រូក",
+        "price": 3,
+        "img": "assets/images/khor_Pig.png"
+    },
+    {
+        "id": 8,
+        "category": "food",
+        "name": "ម្ជូរប្រលិត",
+        "price": 3,
+        "img": "assets/images/Marju_Prorlit.png"
+    },
+    {
+        "id": 9,
+        "category": "food",
+        "name": "ប្រហើរខ្យង",
+        "price": 3,
+        "img": "assets/images/ProrHer_Snail.png"
+    },
+    {
+        "id": 10,
+        "category": "food",
+        "name": "ញុាំស្តៅ",
+        "price": 3,
+        "img": "assets/images/Nheom_Sdeo.png"
+    },
+    {
+        "id": 11,
+        "category": "food",
+        "name": "នំបញ្ចុកសម្លប្រហើរ",
+        "price": 3,
+        "img": "assets/images/Nhom_Bach_Jok_2.png"
+    },
+    {
+        "id": 12,
+        "category": "food",
+        "name": "ទឹកគ្រឿង",
+        "price": 3,
+        "img": "assets/images/Tek_Kreong.png"
+    },
+    {
+        "id": 13,
+        "category": "food",
+        "name": "នំបញ្ចុកសម្លគីរី",
+        "price": 3,
+        "img": "assets/images/Nhom_Bach_Jok.png"
+    },
+    {
+        "id": 19,
+        "category": "cake",
+        "name": "បបរឈូក",
+        "price": 3,
+        "img": "assets/images/បង្អែមបបរឈូក.png"
+    },
+    {
+        "id": 20,
+        "category": "cake",
+        "name": "បាញ់ដុត",
+        "price": 3,
+        "img": "assets/images/បង្អែមបាញ់ដុត.png"
+    },
+    {
+        "id": 21,
+        "category": "cake",
+        "name": "ប្រក្រង់",
+        "price": 3,
+        "img": "assets/images/បង្អែមប្រក្រង់.png"
+    },
+    {
+        "id": 4,
+        "category": "food",
+        "name": "ពងទាត្រីប្រម៉ា",
+        "price": 6,
+        "img": "assets/images/Egg_Fish_Amok.png"
+    },
+    {
+        "id": 14,
+        "category": "cake",
+        "name": "ចាហួយខ្មៅ",
+        "price": 3,
+        "img": "assets/images/ចាហួយខ្មៅ.png"
+    },
+    {
+        "id": 22,
+        "category": "cake",
+        "name": "បបរចេកខ្ទិះ",
+        "price": 3,
+        "img": "assets/images/បបរចេកខ្ទិះ.png"
+    },
+    {
+        "id": 23,
+        "category": "cake",
+        "name": "បបរពោត",
+        "price": 3,
+        "img": "assets/images/បបរពោត.png"
+    },
+    {
+        "id": 24,
+        "category": "cake",
+        "name": "លតស្វិត",
+        "price": 3,
+        "img": "assets/images/លតស្វិត.png"
+    },
+    {
+        "id": 25,
+        "category": "cake",
+        "name": "លតអង្ករខ្មែរ",
+        "price": 3,
+        "img": "assets/images/លតអង្ករខ្មែរ.png"
+    },
+    {
+        "id": 26,
+        "category": "cake",
+        "name": "សង់ខ្យាល្ពៅ",
+        "price": 3,
+        "img": "assets/images/សង់ខ្យាល្ពៅ.png"
+    },
+    {
+        "id": 27,
+        "category": "cake",
+        "name": "សណ្តែកក្រហម",
+        "price": 3,
+        "img": "assets/images/សណ្តែកក្រហម.png"
+    },
+    {
+        "id": 28,
+        "category": "cake",
+        "name": "សណ្តែកខៀវ",
+        "price": 3,
+        "img": "assets/images/សណ្តែកខៀវ.png"
+    },
+    {
+        "id": 31,
+        "category": "drink",
+        "name": "ice-latte",
+        "price": 3,
+        "img": "assets/images/drink-2.png"
+    },
+    {
+        "id": 32,
+        "category": "drink",
+        "name": "iced-americano",
+        "price": 3,
+        "img": "assets/images/drink-4.png"
+    },
+    {
+        "id": 33,
+        "category": "drink",
+        "name": "iced-cappuccino",
+        "price": 3,
+        "img": "assets/images/drink-5.png"
+    }
+    
+    
+]
