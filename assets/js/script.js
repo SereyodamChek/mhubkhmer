@@ -309,18 +309,16 @@ $(document).ready(function () {
   }
 });
 // ...existing code...
-
 $(document).ready(function () {
   $('.payment_option.aba').on('click', function () {
     swal({
       title: "ស្កេន QR Code ដើម្បីបង់ប្រាក់តាម ABA",
       text: "សូមស្កេន QR Code ខាងក្រោម",
       content: {
-        element: "img",
+        element: "div",
         attributes: {
-          src: "assets/images/khqr.JPG",
-          width: "250",
-          alt: "ABA QR Code"
+          style: "display: flex; justify-content: center; align-items: center;",
+          innerHTML: '<img src="assets/images/khqr.JPG" width="250" alt="ABA QR Code" />'
         }
       },
       button: "បិទ"
@@ -334,11 +332,10 @@ $(document).ready(function () {
       title: "ស្កេន QR Code ដើម្បីបង់ប្រាក់តាម KHQR",
       text: "សូមស្កេន QR Code ខាងក្រោម",
       content: {
-        element: "img",
+        element: "div",
         attributes: {
-          src: "assets/images/khqr.JPG",
-          width: "250",
-          alt: "KHQR QR Code"
+          style: "display: flex; justify-content: center; align-items: center;",
+          innerHTML: '<img src="assets/images/khqr.JPG" width="250" alt="KHQR QR Code" />'
         }
       },
       button: "បិទ"
