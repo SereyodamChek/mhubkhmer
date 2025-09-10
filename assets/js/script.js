@@ -342,3 +342,8 @@ $(document).ready(function () {
     });
   });
 });
+$(document).ready(function () {
+  $('.pay_with_scan').on('click', function () {
+    window.location.href = 'register.html';
+  });
+});

@@ -349,7 +349,7 @@ label {
   display: none;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   .icon_toggler {
     display: flex;
     align-items: center;
@@ -884,7 +884,7 @@ label {
   outline: none;
   background: transparent;
   font-size: var(--fz-md);
-  font-family: "Noto Sans Khmer", Poppins, sans-serif;
+  font-family: "dangrek", Poppins, sans-serif;
 }
 
 /* ------------------------------------------------------
@@ -974,7 +974,7 @@ label {
 /* ------------------ Product Name ------------------ */
 .name_cart {
   font-size: var(--fz-sm);
-  font-family: "Poppins", sans-serif;
+  font-family: "dangrek", sans-serif;
   font-weight: 600;
   letter-spacing: 0.3px;
 }
@@ -1352,6 +1352,7 @@ label {
 }
 
 .pay_with_aba,
+.pay_with_scan,
 .pay_with_khqr {
   --btn-bg: #fff;
   --btn-fg: var(--brand);

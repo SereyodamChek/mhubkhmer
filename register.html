@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="km">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ចុះឈ្មោះ - Palm Registration</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #085f86 0%, #063d5a 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        header {
+            background: #063d5a;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .content {
+            padding: 30px;
+            color: #333;
+        }
+
+        .instructions {
+            background: #e9f7fe;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #085f86;
+        }
+
+        .instructions h3 {
+            color: #063d5a;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.6;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #video {
+            width: 100%;
+            display: block;
+            background: #000;
+        }
+
+        .detection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .palm-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 3px dashed #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button i {
+            margin-right: 8px;
+        }
+
+        #capture {
+            background: #4CAF50;
+            color: white;
+        }
+
+        #capture:hover {
+            background: #3e8e41;
+            transform: translateY(-2px);
+        }
+
+        #reset {
+            background: #f44336;
+            color: white;
+        }
+
+        #reset:hover {
+            background: #d32f2f;
+            transform: translateY(-2px);
+        }
+
+        .status {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            height: 27px;
+        }
+
+        #detectionStatus {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .result-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            min-height: 80px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .result-title {
+            color: #063d5a;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        #result {
+            line-height: 1.6;
+        }
+
+        .qr-container {
+            text-align: center;
+            padding: 20px;
+            background: #e9f7fe;
+            border-radius: 10px;
+            display: none;
+        }
+
+        #qrCode {
+            max-width: 200px;
+            margin: 0 auto 15px;
+        }
+
+        .countdown {
+            font-size: 16px;
+            color: #085f86;
+            font-weight: bold;
+        }
+
+        .demo-note {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .success {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #d32f2f;
+        }
+
+        @media (max-width: 768px) {
+            .controls {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+            .palm-indicator {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>ចុះឈ្មោះ</h1>
+            <div class="subtitle">Palm Recognition Registration System</div>
+        </header>
+
+        <div class="content">
+            <div class="instructions">
+                <h3>ការណែនាំ / Instructions:</h3>
+                <ol>
+                    <li>ដាក់ដៃរបស់អ្នកនៅពីមុខកាមេរ៉ា / Place your hand in front of the camera</li>
+                    <li>ធានាថាដៃរបស់អ្នកនៅក្នុងរង្វង់ / Ensure your hand is within the circle</li>
+                    <li>ចុចប៊ូតុង "ស្កេនដៃ" នៅពេលដៃបានត្រូវរកឃើញ / Click "Scan Palm" when hand is detected</li>
+                    <li>ស្កេន QR code ដើម្បីបញ្ចប់ការចុះឈ្មោះ / Scan the QR code to complete registration</li>
+                </ol>
+            </div>
+
+            <div class="video-container">
+                <video id="video" width="800" height="450" autoplay playsinline></video>
+                <div class="detection-overlay">
+                    <div class="palm-indicator">
+                        <i class="fas fa-hand-paper fa-3x" style="color: #4CAF50;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status">
+                <span id="detectionStatus">កំពុងស្កេន... / Scanning...</span>
+            </div>
+
+            <div class="controls">
+                <button id="capture">
+                    <i class="fas fa-hand-pointer"></i> ស្កេនដៃ / Scan Palm
+                </button>
+                <button id="reset">
+                    <i class="fas fa-redo"></i> កំណត់ឡើងវិញ / Reset
+                </button>
+            </div>
+
+            <div class="result-container">
+                <div class="result-title">លទ្ធផល / Results:</div>
+                <div id="result"></div>
+            </div>
+
+            <div id="qrContainer" class="qr-container">
+                <div class="result-title">ស្កេនដើម្បីបញ្ចប់ការចុះឈ្មោះ / Scan to complete registration</div>
+                <div id="qrCode"></div>
+                <div id="countdown" class="countdown"></div>
+            </div>
+
+            <div class="demo-note">
+                Note: This is a demonstration interface. In a real application, actual palm detection would be
+                implemented.
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code library -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+
+    <script>
+        // Global variables
+        let videoStream = null;
+        let detectionInterval = null;
+        let isDetecting = false;
+        let qrTimer = null;
+        let countdown = 20;
+
+        // DOM elements
+        const video = document.getElementById('video');
+        const detectionStatus = document.getElementById('detectionStatus');
+        const captureBtn = document.getElementById('capture');
+        const resetBtn = document.getElementById('reset');
+        const resultDiv = document.getElementById('result');
+        const qrContainer = document.getElementById('qrContainer');
+        const qrCodeDiv = document.getElementById('qrCode');
+        const countdownDiv = document.getElementById('countdown');
+
+        // Initialize the application
+        function init() {
+            // Access webcam
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                    videoStream = stream;
+
+                    // Start palm detection simulation
+                    startPalmDetection();
+                })
+                .catch(err => {
+                    console.error('Error accessing camera:', err);
+                    resultDiv.textContent = 'មិនអាចចាប់ផ្តើមកាមេរ៉ាបាន។ សូមពិនិត្យការអនុញ្ញាតកាមេរ៉ា។ / Cannot access camera. Please check camera permissions.';
+                    resultDiv.className = 'error';
+                    captureBtn.disabled = true;
+                });
+
+            // Set up event listeners
+            captureBtn.addEventListener('click', capturePalm);
+            resetBtn.addEventListener('click', resetApp);
+        }
+
+        // Simulate palm detection
+        function startPalmDetection() {
+            isDetecting = true;
+
+            // In a real application, this would use computer vision to detect palms
+            // For this demo, we'll simulate detection with random success
+
+            detectionInterval = setInterval(() => {
+                // Simulate detection with 30% probability when not already detected
+                if (Math.random() < 0.3) {
+                    detectionStatus.textContent = 'ដៃបានរកឃើញ! / Palm detected!';
+                    detectionStatus.className = 'success';
+                    captureBtn.disabled = false;
+
+                    // Simulate keeping detection for a while
+                    setTimeout(() => {
+                        if (isDetecting) {
+                            detectionStatus.textContent = 'កំពុងស្កេន... / Scanning...';
+                            detectionStatus.className = '';
+                            captureBtn.disabled = true;
+                        }
+                    }, 3000);
+                }
+            }, 1000);
+        }
+
+        // Capture palm image
+        function capturePalm() {
+            // Create a canvas to capture the image
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            // Convert to data URL
+            const dataURL = canvas.toDataURL('image/png');
+
+            // Simulate processing
+            detectionStatus.textContent = 'កំពុងដំណើរការ... / Processing...';
+            captureBtn.disabled = true;
+
+            // Simulate processing delay
+            setTimeout(() => {
+                processPalmCapture(dataURL);
+            }, 2000);
+        }
+
+        // Process the captured palm image
+        function processPalmCapture(imageData) {
+            // In a real application, this would send the image to a server for processing
+            // For this demo, we'll simulate processing and generate a user ID
+
+            const userId = generateUserId();
+            const palmHash = generatePalmHash();
+
+            // Display success message
+            resultDiv.innerHTML = `
+                <p class="success">ការចុះឈ្មោះជោគជ័យ! / Registration successful!</p>
+                <p>ID អ្នកប្រើ / User ID: <strong>${userId}</strong></p>
+                <p>Palm Hash: <code>${palmHash}</code></p>
+            `;
+
+            // Generate QR code for registration completion
+            generateQRCode(userId, palmHash);
+
+            // Stop detection
+            isDetecting = false;
+            clearInterval(detectionInterval);
+            detectionStatus.textContent = 'ការចុះឈ្មោះរួចរាល់! / Registration complete!';
+        }
+
+        // Generate a random user ID (for demo purposes)
+        function generateUserId() {
+            return 'user_' + Math.random().toString(36).substring(2, 10).toUpperCase();
+        }
+
+        // Generate a random palm hash (for demo purposes)
+        function generatePalmHash() {
+            return 'palm_' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+
+        // Generate QR code
+        function generateQRCode(userId, palmHash) {
+            // Clear previous QR code
+            qrCodeDiv.innerHTML = '';
+
+            // Prepare QR code data
+            const qrData = JSON.stringify({
+                userId: userId,
+                palmHash: palmHash,
+                timestamp: new Date().toISOString(),
+                type: 'registration'
+            });
+
+            // Generate QR code
+            QRCode.toCanvas(qrCodeDiv, qrData, {
+                width: 200,
+                color: {
+                    dark: '#085f86',
+                    light: '#ffffff'
+                }
+            }, function (err) {
+                if (err) {
+                    console.error('QR code generation error:', err);
+                    resultDiv.innerHTML += '<p class="error">កំហុសក្នុងការបង្កើត QR code / QR code generation error</p>';
+                    return;
+                }
+
+                // Show QR container
+                qrContainer.style.display = 'block';
+
+                // Start countdown
+                countdown = 20;
+                updateCountdown();
+
+                if (qrTimer) clearInterval(qrTimer);
+                qrTimer = setInterval(updateCountdown, 1000);
+            });
+        }
+
+        // Update QR code countdown
+        function updateCountdown() {
+            countdownDiv.textContent = `QR code នឹងបិទក្នុងរយៈពេល ${countdown} វិនាទី / QR code will close in ${countdown} seconds`;
+
+            if (countdown <= 0) {
+                clearInterval(qrTimer);
+                qrContainer.style.display = 'none';
+            }
+
+            countdown--;
+        }
+
+        // Reset the application
+        function resetApp() {
+            // Clear results and QR code
+            resultDiv.textContent = '';
+            qrContainer.style.display = 'none';
+
+            // Enable capture button
+            captureBtn.disabled = true;
+
+            // Clear any active timers
+            if (qrTimer) {
+                clearInterval(qrTimer);
+                qrTimer = null;
+            }
+
+            // Restart detection
+            if (detectionInterval) {
+                clearInterval(detectionInterval);
+            }
+
+            detectionStatus.textContent = 'កំពុងស្កេន... / Scanning...';
+            detectionStatus.className = '';
+
+            startPalmDetection();
+        }
+
+        // Clean up when leaving the page
+        window.addEventListener('beforeunload', () => {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+            }
+
+            if (detectionInterval) {
+                clearInterval(detectionInterval);
+            }
+
+            if (qrTimer) {
+                clearInterval(qrTimer);
+            }
+        });
+
+        // Initialize the app when the page loads
+        window.addEventListener('load', init);
+    </script>
+</body>
+
+</html>
