@@ -347,3 +347,8 @@ $(document).ready(function () {
     window.location.href = 'register.html';
   });
 });
+// ...existing code...
+document.getElementById('backMenu').onclick = function () {
+  window.location.href = 'menu.html';
+};
+// ...existing code...
