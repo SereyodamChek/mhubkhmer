@@ -318,7 +318,7 @@ $(document).ready(function () {
       content: {
         element: "img",
         attributes: {
-          src: "assets/images/khqr.jpg",
+          src: "assets/images/khqr.JPG",
           width: "250",
           alt: "ABA QR Code"
         }
@@ -336,7 +336,7 @@ $(document).ready(function () {
       content: {
         element: "img",
         attributes: {
-          src: "assets/images/khqr.jpg",
+          src: "assets/images/khqr.JPG",
           width: "250",
           alt: "KHQR QR Code"
         }
