@@ -355,209 +355,30 @@ label {
     align-items: center;
   }
 
-  /* ------------------ Modern Premium Navlist ------------------ */
-  /* Root-safe fallbacks (optional) */
-  :root {
-    --surface: rgba(20, 20, 22, 0.72);
-    --surface-2: rgba(255, 255, 255, 0.06);
-    --text: #eef0f3;
-    --line: rgba(255, 255, 255, 0.12);
-    --brand: #8af2c8;
-    --ease: cubic-bezier(.22, .61, .36, 1);
-    --space-3: 1.2rem;
-    --r-md: 14px;
-    --shadow-lg: 0 24px 60px rgba(0, 0, 0, .45);
-  }
-
-  /* Container under top bar (64px) */
   .navlist {
     position: fixed;
-    left: 0;
-    right: 0;
-    top: 64px;
+    inset: 64px 0 auto 0;
     height: 0;
-    overflow: clip;
-    display: flex;
+    overflow: hidden;
     flex-direction: column;
     gap: 0;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)) 0 0/100% 100%,
-      var(--surface);
-    color: var(--text);
+    background: var(--surface);
     border-bottom: 1px solid var(--line);
-    box-shadow: var(--shadow-lg);
-    backdrop-filter: blur(18px) saturate(160%);
-    -webkit-backdrop-filter: blur(18px) saturate(160%);
-    transition: height .36s var(--ease), box-shadow .36s var(--ease);
-    will-change: height;
-    z-index: 110;
+    transition: height .35s var(--ease);
   }
 
-  /* Smooth opening height; tweak count as needed */
   .navlist.active {
-    height: calc(56px * 6 + 12px);
-    /* 6 items + breathing space */
-    box-shadow: 0 22px 70px rgba(0, 0, 0, .50);
+    height: calc(56px * 6);
   }
 
-  /* Allow content to fade/slide in */
   .navlist>li {
     width: 100%;
-    opacity: 0;
-    transform: translateY(-6px);
-    transition: opacity .28s var(--ease), transform .28s var(--ease);
-  }
-
-  /* Staggered reveal */
-  .navlist.active>li {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .navlist.active>li:nth-child(1) {
-    transition-delay: .03s
-  }
-
-  .navlist.active>li:nth-child(2) {
-    transition-delay: .06s
-  }
-
-  .navlist.active>li:nth-child(3) {
-    transition-delay: .09s
-  }
-
-  .navlist.active>li:nth-child(4) {
-    transition-delay: .12s
-  }
-
-  .navlist.active>li:nth-child(5) {
-    transition-delay: .15s
-  }
-
-  .navlist.active>li:nth-child(6) {
-    transition-delay: .18s
   }
 
   .navlist>li>a {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    /* room for chevrons/badges */
-    align-items: center;
-    gap: .8rem;
+    display: block;
     padding: 1.6rem var(--space-3);
-    text-decoration: none;
-    color: inherit;
-    position: relative;
-    isolation: isolate;
   }
-
-  /* Hairline separators */
-  .navlist>li+li>a {
-    border-top: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
-  }
-
-  /* Hover/active states with subtle light sweep */
-  .navlist>li>a::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(120% 200% at 100% 0%, rgba(255, 255, 255, .10) 0%, transparent 45%),
-      linear-gradient(90deg, rgba(255, 255, 255, .06), transparent 40%);
-    opacity: 0;
-    transition: opacity .25s var(--ease);
-    z-index: -1;
-    border-radius: 0;
-  }
-
-  .navlist>li>a:hover::before {
-    opacity: 1;
-  }
-
-  /* Active/Current page */
-  .navlist>li.is-active>a {
-    background: rgba(255, 255, 255, .08);
-    color: var(--text);
-    border-top-color: transparent;
-  }
-
-  .navlist>li.is-active>a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: var(--brand);
-  }
-
-  /* Focus visibility for keyboard users */
-  .navlist>li>a:focus-visible {
-    outline: 0;
-    box-shadow: inset 0 0 0 2px color-mix(in oklab, var(--brand) 70%, white 30%);
-    background: rgba(255, 255, 255, .09);
-  }
-
-  /* Optional right-aligned meta/badge slot */
-  .navlist .meta,
-  .navlist .badge {
-    font-size: 12px;
-    line-height: 1;
-    padding: .35rem .6rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, .10);
-    border: 1px solid rgba(255, 255, 255, .14);
-  }
-
-  /* Motion sensitivity */
-  @media (prefers-reduced-motion: reduce) {
-
-    .navlist,
-    .navlist>li,
-    .navlist>li>a::before {
-      transition: none !important;
-    }
-  }
-
-  /* --------- Desktop enhancement (convert to horizontal bar) --------- */
-  /* Adjust breakpoint to your layout */
-  @media (min-width: 992px) {
-    .navlist {
-      position: sticky;
-      top: 64px;
-      height: auto;
-      display: grid;
-      grid-auto-flow: column;
-      align-items: center;
-      padding: 0 .6rem;
-      backdrop-filter: blur(12px) saturate(140%);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .navlist>li {
-      opacity: 1 !important;
-      transform: none !important;
-    }
-
-    .navlist>li>a {
-      padding: 1.2rem 1.1rem;
-      border-top: 0;
-    }
-
-    .navlist>li+li>a {
-      border-top: 0;
-    }
-
-    .navlist>li.is-active>a::after {
-      left: 0;
-      right: 0;
-      bottom: 0;
-      top: auto;
-      height: 2px;
-      width: auto;
-    }
-  }
-
 }
 
 /* =============================
